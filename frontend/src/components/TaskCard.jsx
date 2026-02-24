@@ -71,12 +71,12 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
 
     return (
         <Card className={cn(
-            "p-4 bg-gradient-card border-0 shadow-custom-md hover:shadow-custom-lg transition-all duration-200 animate-fade-in group",
+            "group animate-fade-in border-0 bg-gradient-card p-3 shadow-custom-md transition-all duration-200 hover:shadow-custom-lg sm:p-4",
             task.status === "completed" && "opacity-75"
 
         )}
         >
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-3 sm:items-center sm:gap-4">
                 {/*nuts tron */}
                 <Button variant='ghost'
                     size='icon'
@@ -126,7 +126,7 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
                         </p>
                     )}
                     {/*Ngay tao va ngay hoan thanh*/}
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
 
                         <Calendar className='size-3 text-muted-foreground' />
                         <span className="text-xs text-muted-foreground">
@@ -153,7 +153,7 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
 
 
                 {/*nut chinh sua va xoa*/}
-                <div className="hidden gap-2 group-hover:inline-flex animate-slide-up">
+                <div className="inline-flex shrink-0 gap-1.5 sm:gap-2 md:hidden md:group-hover:inline-flex md:animate-slide-up">
                     {/*nút edit*/}
                     <Button
                         variant="ghost"

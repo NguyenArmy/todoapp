@@ -68,7 +68,7 @@ const HomePage = () => {
     }
 
     return (
-        <div className="min-h-screen w-full bg-white relative">
+        <div className="relative min-h-screen w-full bg-white">
             {/* Dual Gradient Overlay (Bottom) Background */}
             <div
                 className="absolute inset-0 z-0"
@@ -83,8 +83,8 @@ const HomePage = () => {
                 }}
             />
             {/* Your Content/Components */}
-            <div className="container pt-8 mx-auto relative z-10">
-                <div className="w-full max-w-2xl p-6 mx-auto space-y-6">
+            <div className="relative z-10 mx-auto w-full max-w-5xl px-4 pb-6 pt-4 sm:px-6 sm:pt-8 lg:px-8">
+                <div className="mx-auto w-full max-w-2xl space-y-4 sm:space-y-6">
 
                     {/* Header */}
                     <Header />
@@ -104,14 +104,18 @@ const HomePage = () => {
                     <TaskList filteredTasks={pagedTasks} filter={filter}
                         handleTaskChanged={handleTaskChanged} />
                     {/* phân trang và lọc theo date */}
-                    < div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-                        <TaskListPagination
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            onPageChange={setCurrentPage}
-                        />
-                        <DateTimeFilter
-                            dateQuery={dateQuery} setDateQuery={setDateQuery} />
+                    <div className="flex w-full flex-col items-stretch justify-between gap-2 sm:flex-row sm:items-center sm:gap-4">
+                        <div className="order-1">
+                            <TaskListPagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setCurrentPage}
+                            />
+                        </div>
+                        <div className="order-2 self-start sm:self-auto">
+                            <DateTimeFilter
+                                dateQuery={dateQuery} setDateQuery={setDateQuery} />
+                        </div>
 
                     </div>
                     {/* chân trang */}

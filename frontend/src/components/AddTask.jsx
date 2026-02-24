@@ -33,12 +33,12 @@ const AddTask = ({ handleNewTaskAdded = () => { } }) => {
 
 
     return (
-        <Card className="p-6 border-0 bg-gradient-card shadow-custom-lg">
+        <Card className="border-0 bg-gradient-card p-4 shadow-custom-lg sm:p-6">
             <div className="flex flex-col gap-3 sm:flex-row">
                 <Input
                     type="text"
                     placeholder="cần phải làm gì hôm nay?"
-                    className="h-12 text-base bg-slate-50 sm:flex-1b border-border/50 focus:border-primary/50 focus:ring-primary/20"
+                    className="h-12 bg-slate-50 text-base sm:flex-1 border-border/50 focus:border-primary/50 focus:ring-primary/20"
                     value={newTaskTitle}
                     onChange={(event) => setNewTaskTitle(event.target.value)}
                     onKeyPress={handleKeyPress}
@@ -48,7 +48,7 @@ const AddTask = ({ handleNewTaskAdded = () => { } }) => {
                 <Button
                     variant="gradient"
                     size="xl"
-                    className="px-6"
+                    className="w-full px-6 sm:w-auto"
 
 
                     onClick={addTask}

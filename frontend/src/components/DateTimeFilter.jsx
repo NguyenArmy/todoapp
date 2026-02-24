@@ -20,9 +20,7 @@ import { options } from '@/lib/data'
 
 const DateTimeFilter = ({ dateQuery, setDateQuery }) => {
     const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState("")
-
-    const selectedLabel = options.find((item) => item.value === value)?.label
+    const selectedLabel = options.find((item) => item.value === dateQuery)?.label
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -31,13 +29,13 @@ const DateTimeFilter = ({ dateQuery, setDateQuery }) => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-52 justify-between"
+                    className="h-9 w-40 justify-between px-3 text-sm sm:h-10 sm:w-52"
                 >
                     {selectedLabel || "Chọn thời gian"}
                     <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-52 p-0">
+            <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
                 <Command>
                     <CommandInput placeholder="Tìm thời gian..." />
                     <CommandList>
@@ -48,14 +46,14 @@ const DateTimeFilter = ({ dateQuery, setDateQuery }) => {
                                     key={item.value}
                                     value={item.value}
                                     onSelect={(currentValue) => {
-                                        setValue(currentValue === value ? "" : currentValue)
+                                        setDateQuery(currentValue === dateQuery ? "" : currentValue)
                                         setOpen(false)
                                     }}
                                 >
                                     <Check
                                         className={cn(
                                             "mr-2 size-4",
-                                            value === item.value ? "opacity-100" : "opacity-0"
+                                            dateQuery === item.value ? "opacity-100" : "opacity-0"
                                         )}
                                     />
                                     {item.label}

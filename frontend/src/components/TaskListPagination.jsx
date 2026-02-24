@@ -20,9 +20,34 @@ const TaskListPagination = ({ currentPage, totalPages, onPageChange }) => {
         onPageChange(page)
     }
 
+    const pageNumbers = (() => {
+        if (totalPages <= 5) {
+            return Array.from({ length: totalPages }, (_, index) => index + 1)
+        }
+
+        const pages = [1]
+        const from = Math.max(2, currentPage - 1)
+        const to = Math.min(totalPages - 1, currentPage + 1)
+
+        if (from > 2) {
+            pages.push("left-ellipsis")
+        }
+
+        for (let page = from; page <= to; page += 1) {
+            pages.push(page)
+        }
+
+        if (to < totalPages - 1) {
+            pages.push("right-ellipsis")
+        }
+
+        pages.push(totalPages)
+        return pages
+    })()
+
     return (
-        <Pagination>
-            <PaginationContent>
+        <Pagination className="justify-start sm:justify-center">
+            <PaginationContent className="max-w-full flex-nowrap overflow-x-auto pb-1">
                 <PaginationItem>
                     <PaginationPrevious
                         href="#"
@@ -33,8 +58,15 @@ const TaskListPagination = ({ currentPage, totalPages, onPageChange }) => {
                     />
                 </PaginationItem>
 
-                {Array.from({ length: totalPages }, (_, index) => {
-                    const page = index + 1
+                {pageNumbers.map((page, index) => {
+                    if (typeof page !== "number") {
+                        return (
+                            <PaginationItem key={`${page}-${index}`}>
+                                <span className="px-1 text-muted-foreground">...</span>
+                            </PaginationItem>
+                        )
+                    }
+
                     return (
                         <PaginationItem key={page}>
                             <PaginationLink
